@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainWeatherStatusView: View {
     
+    @Binding var animate: Bool
+    
     var imageName: String
     var temperature: Int
     
@@ -19,6 +21,7 @@ struct MainWeatherStatusView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 180, height: 180)
+                .symbolEffect(.bounce, options: .speed(1.1).repeat(2), value: animate)
             Text("\(temperature)°")
                 .font(.system(size: 70, weight: .medium))
                 .foregroundStyle(.white)
@@ -28,6 +31,6 @@ struct MainWeatherStatusView: View {
 }
 
 #Preview {
-    MainWeatherStatusView(imageName: "sun.max.fill", temperature: 76)
+    MainWeatherStatusView(animate: .constant(true), imageName: "sun.max.fill", temperature: 76)
         .background(Color.blue)
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct WeatherDayView: View {
     
+    @Binding var animate: Bool
+    
     var dayOfWeek: String
     var imageName: String
     var temperature: Int
@@ -24,6 +26,7 @@ struct WeatherDayView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
+                .symbolEffect(.bounce, value: animate)
             Text("\(temperature)°")
                 .font(.system(size: 28, weight: .medium))
                 .foregroundStyle(.white)
@@ -32,6 +35,6 @@ struct WeatherDayView: View {
 }
 
 #Preview {
-    WeatherDayView(dayOfWeek: "Mon", imageName: "cloud.sun.fill", temperature: 78)
+    WeatherDayView(animate: .constant(true), dayOfWeek: "Mon", imageName: "cloud.sun.fill", temperature: 78)
         .background(Color.blue)
 }
