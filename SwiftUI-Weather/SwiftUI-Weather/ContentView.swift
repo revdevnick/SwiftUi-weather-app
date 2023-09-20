@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.blue, .white], 
+            LinearGradient(colors: [.blue, .lightBlue],
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
@@ -25,17 +25,27 @@ struct ContentView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 180, height: 180)
-                    Text("76°")
+                    Text("75°")
                         .font(.system(size: 70, weight: .medium))
                         .foregroundStyle(.white)
                 }
-                Spacer()
+                .padding(.bottom, 40)
                 HStack(spacing: 20) {
-                    WeatherDayView(dayOfWeek: "Tue", imageName: "cloud.sun.fill", temperature: 74)
-                    WeatherDayView(dayOfWeek: "Wed", imageName: "sun.max.fill", temperature: 70)
-                    WeatherDayView(dayOfWeek: "Thu", imageName: "wind", temperature: 66)
-                    WeatherDayView(dayOfWeek: "Fri", imageName: "sunset.fill", temperature: 60)
-                    WeatherDayView(dayOfWeek: "Sat", imageName: "moon.stars.fill", temperature: 55)
+                    WeatherDayView(dayOfWeek: "Thu", imageName: "cloud.fill", temperature: 81)
+                    WeatherDayView(dayOfWeek: "Fri", imageName: "cloud.rain.fill", temperature: 74)
+                    WeatherDayView(dayOfWeek: "Sat", imageName: "cloud.rain.fill", temperature: 70)
+                    WeatherDayView(dayOfWeek: "Sun", imageName: "sun.max.fill", temperature: 78)
+                    WeatherDayView(dayOfWeek: "Mon", imageName: "cloud.sun.fill", temperature: 78)
+                }
+                Spacer()
+                Button {
+                    print("tapped")
+                } label: {
+                    Text("Change Day Time")
+                        .frame(width: 280, height: 50)
+                        .background(.white)
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                        .cornerRadius(10)
                 }
                 Spacer()
             }
