@@ -9,17 +9,14 @@ import SwiftUI
 
 struct BackgroundView: View {
     
-    var topColor: Color
-    var bottomColor: Color
+    var isNight: Bool
     
     var body: some View {
-        LinearGradient(colors: [topColor, bottomColor],
-                       startPoint: .topLeading,
-                       endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(.all)
+        //        LinearGradient(colors: [isNight ? .black : .blue, isNight ? .gray : .lightBlue],
+        //                       startPoint: .topLeading,
+        //                       endPoint: .bottomTrailing)
+        ContainerRelativeShape()
+            .fill(isNight ? Color.black.gradient : Color.blue.gradient)
+            .ignoresSafeArea()
     }
-}
-
-#Preview {
-    BackgroundView(topColor: .blue, bottomColor: .lightBlue)
 }

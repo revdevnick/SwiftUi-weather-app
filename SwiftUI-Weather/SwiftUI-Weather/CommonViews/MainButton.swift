@@ -16,7 +16,7 @@ struct MainButton: View {
     var body: some View {
         Text(buttonText)
             .frame(width: 280, height: 50)
-            .background(backgroundColor)
+            .background(backgroundColor.gradient)
             .foregroundColor(textColor)
             .font(.system(size: 20, weight: .bold, design: .default))
             .cornerRadius(10)
@@ -24,6 +24,5 @@ struct MainButton: View {
 }
 
 #Preview {
-    MainButton(buttonText: "Change Day Time", textColor: .blue, backgroundColor: .white)
-        .background(Color.blue)
+    MainButton(buttonText: "Change Day Time", textColor: .white, backgroundColor: .blue)
 }

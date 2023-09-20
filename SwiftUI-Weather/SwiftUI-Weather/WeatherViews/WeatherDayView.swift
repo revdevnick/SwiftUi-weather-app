@@ -20,7 +20,7 @@ struct WeatherDayView: View {
                 .foregroundStyle(.white)
                 .textCase(.uppercase)
             Image(systemName: imageName)
-                .renderingMode(.original)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
