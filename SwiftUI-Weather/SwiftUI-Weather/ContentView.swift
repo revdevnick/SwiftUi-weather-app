@@ -21,27 +21,23 @@ struct ContentView: View {
                                       imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill",
                                       temperature: 75)
                 HStack(spacing: 20) {
-                    WeatherDayView(animate: $animate,
-                                   dayOfWeek: "Thu",
+                    WeatherDayView(dayOfWeek: "Thu",
                                    imageName: isNight ? "cloud.moon.fill" : "cloud.fill",
                                    temperature: 81)
-                    WeatherDayView(animate: $animate,
-                                   dayOfWeek: "Fri",
+                    WeatherDayView(dayOfWeek: "Fri",
                                    imageName: "cloud.rain.fill",
                                    temperature: 74)
-                    WeatherDayView(animate: $animate,
-                                   dayOfWeek: "Sat",
+                    WeatherDayView(dayOfWeek: "Sat",
                                    imageName: "cloud.rain.fill",
                                    temperature: 70)
-                    WeatherDayView(animate: $animate,
-                                   dayOfWeek: "Sun",
+                    WeatherDayView(dayOfWeek: "Sun",
                                    imageName: isNight ? "moon.stars.fill" : "sun.max.fill",
                                    temperature: 78)
-                    WeatherDayView(animate: $animate,
-                                   dayOfWeek: "Mon",
+                    WeatherDayView(dayOfWeek: "Mon",
                                    imageName: isNight ? "cloud.moon.fill" : "cloud.sun.fill",
                                    temperature: 78)
                 }
+                .symbolEffect(.bounce, value: animate)
                 Spacer()
                 Button {
                     isNight.toggle()

@@ -21,7 +21,7 @@ struct MainWeatherStatusView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 180, height: 180)
-                .symbolEffect(.bounce, options: .speed(1.1).repeat(2), value: animate)
+                .symbolEffect(.bounce.up, options: .speed(1.1).repeat(2), value: animate)
             Text("\(temperature)°")
                 .font(.system(size: 70, weight: .medium))
                 .foregroundStyle(.white)
