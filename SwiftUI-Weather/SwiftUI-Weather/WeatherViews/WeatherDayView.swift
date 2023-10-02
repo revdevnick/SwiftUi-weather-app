@@ -16,16 +16,16 @@ struct WeatherDayView: View {
     var body: some View {
         VStack(spacing: 10) {
             Text(dayOfWeek)
-                .font(.system(size: 16, weight: .medium, design: .default))
+                .font(.system(size: 22, weight: .medium, design: .default))
                 .foregroundStyle(.white)
                 .textCase(.uppercase)
             Image(systemName: imageName)
                 .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 40, height: 40)
+                .frame(width: 52, height: 52)
             Text("\(temperature)°")
-                .font(.system(size: 28, weight: .medium))
+                .font(.system(size: 32, weight: .medium))
                 .foregroundStyle(.white)
         }
     }
