@@ -69,9 +69,11 @@ func getForecast() async throws -> Forecast {
     
     guard let url = URL(string: endpoint) else { throw WeatherAPIError.invalidUrl }
     
-    #warning("Obfuscate this API key")
+    guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist"), let keys = NSDictionary(contentsOfFile: path), let apiKey = keys["WeatherAPIKey"] as? String else {
+        throw WeatherAPIError.forbidden("Key not found")
+        }
     let headers = [
-        "X-RapidAPI-Key": "c564a8e61amsh7ce9a41c9cd2e44p180adbjsn71333c8dceb5",
+        "X-RapidAPI-Key": apiKey,
         "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
     ]
     
