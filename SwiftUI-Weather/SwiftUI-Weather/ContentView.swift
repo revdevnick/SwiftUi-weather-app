@@ -9,45 +9,69 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isNight: Bool = false
-    @State private var animate: Bool = false
-    @State private var forecast: Forecast?
+    @Bindable var model = ViewModel()
+    
     
     let dateFormatter = DateFormatter()
     
     var body: some View {
-        ZStack {
-            BackgroundView(isNight: isNight)
-            VStack {
-                CityView(cityName: "\(forecast?.location.cityName ?? "N/A"), \(forecast?.location.region ?? " ??")")
-                MainWeatherStatusView(animate: $animate,
-                                      imageName: forecast?.current?.condition.sfSymbol ?? "sun.max.trianglebadge.exclamationmark.fill",
-                                      temperature: forecast?.current?.tempF ?? 0)
-                Text("3-Day Forecast")
-                    .font(.system(size: 32, weight: .medium))
-                    .foregroundStyle(.white)
-                    .padding(.bottom, 20)
-                HStack(spacing: 20) {
-                    ForEach(forecast?.forecast.forecastDay ?? [], id: \.self) { day in
-                        WeatherDayView(dayOfWeek: day.dayOfWeekFormatted ,
-                                       imageName: day.day.condition.sfSymbol,
-                                       temperature: day.day.maxTempF ?? 0)
+        NavigationStack {
+            ZStack {
+                BackgroundView(isNight: model.isNight)
+                VStack {
+                    CityView(cityName: "\(model.forecast?.location.cityName ?? "N/A"), \(model.forecast?.location.region ?? " ??")")
+                    MainWeatherStatusView(animate: $model.animate,
+                                          imageName: model.forecast?.current?.condition.sfSymbol ?? "sun.max.trianglebadge.exclamationmark.fill",
+                                          temperature: model.forecast?.current?.tempF ?? 0)
+                    Text("3-Day Forecast")
+                        .font(.system(size: 32, weight: .medium))
+                        .foregroundStyle(.white)
+                        .padding(.bottom, 20)
+                    HStack(spacing: 20) {
+                        ForEach(model.forecast?.forecast.forecastDay ?? [], id: \.self) { day in
+                            WeatherDayView(dayOfWeek: day.dayOfWeekFormatted ,
+                                           imageName: day.day.condition.sfSymbol,
+                                           temperature: day.day.maxTempF)
+                        }
+                    }
+                    .symbolEffect(.bounce, value: model.animate)
+                    Spacer()
+                    Button {
+                        model.isNight.toggle()
+                        model.animate.toggle()
+                    } label: {
+                        MainButton(buttonText: "Change Day Time", textColor: .white, backgroundColor: .orange)
+                    }
+                    Spacer()
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    AsyncButton {
+                        model.isUpdating.toggle()
+                        do {
+                            model.forecast = try await getForecast()
+                        } catch WeatherAPIError.invalidUrl {
+                            print("invalid Url")
+                        } catch WeatherAPIError.invalidResponse {
+                            print("invalid Response")
+                        } catch WeatherAPIError.invalidData {
+                            print("invalid Data")
+                        } catch {
+                            print("unexpected error")
+                        }
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                            .rotationEffect(.degrees(model.isUpdating ? 360 : 0), anchor: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .animation(.linear.repeatForever(autoreverses: false), value: model.isUpdating)
+                            .tint(model.isUpdating ? .lightBlue : .white)
                     }
                 }
-                .symbolEffect(.bounce, value: animate)
-                Spacer()
-                Button {
-                    isNight.toggle()
-                    animate.toggle()
-                } label: {
-                    MainButton(buttonText: "Change Day Time", textColor: .white, backgroundColor: .orange)
-                }
-                Spacer()
             }
         }
         .task {
             do {
-                forecast = try await getForecast()
+                model.forecast = try await getForecast()
             } catch WeatherAPIError.invalidUrl {
                 print("invalid Url")
             } catch WeatherAPIError.invalidResponse {
@@ -59,7 +83,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            animate.toggle()
+            model.animate.toggle()
         }
     }
 }
@@ -71,7 +95,7 @@ func getForecast() async throws -> Forecast {
     
     guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist"), let keys = NSDictionary(contentsOfFile: path), let apiKey = keys["WeatherAPIKey"] as? String else {
         throw WeatherAPIError.forbidden("Key not found")
-        }
+    }
     let headers = [
         "X-RapidAPI-Key": apiKey,
         "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
@@ -134,3 +158,36 @@ enum WeatherAPIError: Error {
 }
 
 
+
+struct AsyncButton<Label: View>: View {
+    var action: () async -> Void
+    @ViewBuilder var label: () -> Label
+
+    @State private var isPerformingTask = false
+
+    var body: some View {
+        Button(
+            action: {
+                isPerformingTask = true
+            
+                Task {
+                    await action()
+                    isPerformingTask = false
+                }
+            },
+            label: {
+                ZStack {
+                    // We hide the label by setting its opacity
+                    // to zero, since we don't want the button's
+                    // size to change while its task is performed:
+                    label().opacity(isPerformingTask ? 0 : 1)
+
+                    if isPerformingTask {
+                        ProgressView()
+                    }
+                }
+            }
+        )
+        .disabled(isPerformingTask)
+    }
+}

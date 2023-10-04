@@ -24,8 +24,8 @@ struct CurrentForecast: Codable {
     var cloud: Int
     var feelsLikeC: Double
     var feelsLikeF: Double
-    var visibilityKm: Int
-    var visibilityMiles: Int
+    var visibilityKm: Double
+    var visibilityMiles: Double
     var uv: Int
     var windGustMph: Double
     var windGustKph: Double
@@ -75,8 +75,8 @@ struct CurrentForecast: Codable {
         cloud = try values.decode(Int.self, forKey: .cloud)
         feelsLikeC = try values.decode(Double.self, forKey: .feelsLikeC)
         feelsLikeF = try values.decode(Double.self, forKey: .feelsLikeF)
-        visibilityKm = try values.decode(Int.self, forKey: .visibilityKm)
-        visibilityMiles = try values.decode(Int.self, forKey: .visibilityMiles)
+        visibilityKm = try values.decode(Double.self, forKey: .visibilityKm)
+        visibilityMiles = try values.decode(Double.self, forKey: .visibilityMiles)
         uv = try values.decode(Int.self, forKey: .uv)
         windGustMph = try values.decode(Double.self, forKey: .windGustMph)
         windGustKph = try values.decode(Double.self, forKey: .windGustKph)

@@ -36,8 +36,8 @@ struct Hour: Codable, Hashable {
     var chanceOfRain: Int
     var willItSnow: Bool
     var chanceofSnow: Int
-    var visKm: Int
-    var visMiles: Int
+    var visKm: Double
+    var visMiles: Double
     var gustMph: Double
     var gustKph: Double
     var uv: Int
@@ -111,8 +111,8 @@ struct Hour: Codable, Hashable {
         let willSnowValue = try container.decode(Int.self, forKey: .willItSnow)
         self.willItSnow = willSnowValue != 0
         self.chanceofSnow = try container.decode(Int.self, forKey: .chanceofSnow)
-        self.visKm = try container.decode(Int.self, forKey: .visKm)
-        self.visMiles = try container.decode(Int.self, forKey: .visMiles)
+        self.visKm = try container.decode(Double.self, forKey: .visKm)
+        self.visMiles = try container.decode(Double.self, forKey: .visMiles)
         self.gustMph = try container.decode(Double.self, forKey: .gustMph)
         self.gustKph = try container.decode(Double.self, forKey: .gustKph)
         self.uv = try container.decode(Int.self, forKey: .uv)
