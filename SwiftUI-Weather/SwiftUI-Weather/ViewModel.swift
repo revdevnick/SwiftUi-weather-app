@@ -13,10 +13,12 @@ import Foundation
     var animate: Bool = false
     var forecast: Forecast?
     var isUpdating: Bool = false
+    var useMetricSystem: Bool {
+        return Locale.current.measurementSystem == .metric
+    }
     
-    func getForecast() async throws -> Forecast {
-        let endpoint = "https://weatherapi-com.p.rapidapi.com/forecast.json?q=27527&days=3"
-        
+    func getForecast(for city: String) async throws -> Forecast {
+        let endpoint = "https://weatherapi-com.p.rapidapi.com/forecast.json?q=\(city)&days=3"
         guard let url = URL(string: endpoint) else { throw WeatherAPIError.invalidUrl }
         
         guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist"), let keys = NSDictionary(contentsOfFile: path), let apiKey = keys["WeatherAPIKey"] as? String else {

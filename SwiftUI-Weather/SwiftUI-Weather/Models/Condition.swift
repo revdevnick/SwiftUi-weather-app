@@ -44,7 +44,7 @@ struct Condition: Codable, Equatable, Hashable {
             return "wind.snow"
         case 1135, 1147:
             return "cloud.fog.fill"
-        case 1279, 1255: //light snow
+        case 1255: //light snow
             return "cloud.snow.fill"
         case 1216, 1219: //moderate snow
             return "cloud.snow"

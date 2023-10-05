@@ -19,6 +19,15 @@
 		6E4876732ACC88CD001D5E2C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4876722ACC88CD001D5E2C /* ViewModel.swift */; };
 		6E4876752ACDA2AB001D5E2C /* WeatherAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4876742ACDA2AB001D5E2C /* WeatherAPIError.swift */; };
 		6E4876772ACDA300001D5E2C /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4876762ACDA300001D5E2C /* AsyncButton.swift */; };
+		6E4876852ACF2523001D5E2C /* SF-Compact-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E48767C2ACF2522001D5E2C /* SF-Compact-Display-Black.otf */; };
+		6E4876862ACF2523001D5E2C /* SF-Compact-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E48767D2ACF2522001D5E2C /* SF-Compact-Display-Bold.otf */; };
+		6E4876872ACF2523001D5E2C /* SF-Compact-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E48767E2ACF2522001D5E2C /* SF-Compact-Display-Regular.otf */; };
+		6E4876882ACF2523001D5E2C /* SF-Compact-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E48767F2ACF2522001D5E2C /* SF-Compact-Display-Ultralight.otf */; };
+		6E4876892ACF2523001D5E2C /* SF-Compact-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E4876802ACF2522001D5E2C /* SF-Compact-Display-Thin.otf */; };
+		6E48768A2ACF2523001D5E2C /* SF-Compact-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E4876812ACF2522001D5E2C /* SF-Compact-Display-Light.otf */; };
+		6E48768B2ACF2523001D5E2C /* SF-Compact-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E4876822ACF2523001D5E2C /* SF-Compact-Display-Heavy.otf */; };
+		6E48768C2ACF2523001D5E2C /* SF-Compact-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E4876832ACF2523001D5E2C /* SF-Compact-Display-Semibold.otf */; };
+		6E48768D2ACF2523001D5E2C /* SF-Compact-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E4876842ACF2523001D5E2C /* SF-Compact-Display-Medium.otf */; };
 		6EBCB6C52ABB30F700C72BB5 /* SwiftUI_WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBCB6C42ABB30F700C72BB5 /* SwiftUI_WeatherApp.swift */; };
 		6EBCB6C72ABB30F700C72BB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBCB6C62ABB30F700C72BB5 /* ContentView.swift */; };
 		6EBCB6C92ABB30F700C72BB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EBCB6C82ABB30F700C72BB5 /* Assets.xcassets */; };
@@ -44,6 +53,16 @@
 		6E4876722ACC88CD001D5E2C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		6E4876742ACDA2AB001D5E2C /* WeatherAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIError.swift; sourceTree = "<group>"; };
 		6E4876762ACDA300001D5E2C /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
+		6E48767B2ACF2408001D5E2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6E48767C2ACF2522001D5E2C /* SF-Compact-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Black.otf"; sourceTree = "<group>"; };
+		6E48767D2ACF2522001D5E2C /* SF-Compact-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Bold.otf"; sourceTree = "<group>"; };
+		6E48767E2ACF2522001D5E2C /* SF-Compact-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Regular.otf"; sourceTree = "<group>"; };
+		6E48767F2ACF2522001D5E2C /* SF-Compact-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Ultralight.otf"; sourceTree = "<group>"; };
+		6E4876802ACF2522001D5E2C /* SF-Compact-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Thin.otf"; sourceTree = "<group>"; };
+		6E4876812ACF2522001D5E2C /* SF-Compact-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Light.otf"; sourceTree = "<group>"; };
+		6E4876822ACF2523001D5E2C /* SF-Compact-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Heavy.otf"; sourceTree = "<group>"; };
+		6E4876832ACF2523001D5E2C /* SF-Compact-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Semibold.otf"; sourceTree = "<group>"; };
+		6E4876842ACF2523001D5E2C /* SF-Compact-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Medium.otf"; sourceTree = "<group>"; };
 		6EBCB6C12ABB30F700C72BB5 /* SwiftUI-Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EBCB6C42ABB30F700C72BB5 /* SwiftUI_WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_WeatherApp.swift; sourceTree = "<group>"; };
 		6EBCB6C62ABB30F700C72BB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +87,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E4876782ACF2384001D5E2C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6E48767C2ACF2522001D5E2C /* SF-Compact-Display-Black.otf */,
+				6E48767D2ACF2522001D5E2C /* SF-Compact-Display-Bold.otf */,
+				6E4876822ACF2523001D5E2C /* SF-Compact-Display-Heavy.otf */,
+				6E4876812ACF2522001D5E2C /* SF-Compact-Display-Light.otf */,
+				6E4876842ACF2523001D5E2C /* SF-Compact-Display-Medium.otf */,
+				6E48767E2ACF2522001D5E2C /* SF-Compact-Display-Regular.otf */,
+				6E4876832ACF2523001D5E2C /* SF-Compact-Display-Semibold.otf */,
+				6E4876802ACF2522001D5E2C /* SF-Compact-Display-Thin.otf */,
+				6E48767F2ACF2522001D5E2C /* SF-Compact-Display-Ultralight.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		6EBCB6B82ABB30F700C72BB5 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +123,8 @@
 		6EBCB6C32ABB30F700C72BB5 /* SwiftUI-Weather */ = {
 			isa = PBXGroup;
 			children = (
+				6E48767B2ACF2408001D5E2C /* Info.plist */,
+				6E4876782ACF2384001D5E2C /* Fonts */,
 				6EBCB6C82ABB30F700C72BB5 /* Assets.xcassets */,
 				6EBCB6C62ABB30F700C72BB5 /* ContentView.swift */,
 				6EBCB6DD2ABB466900C72BB5 /* CommonViews */,
@@ -204,7 +241,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E4876612ACB494E001D5E2C /* Keys.plist in Resources */,
+				6E4876852ACF2523001D5E2C /* SF-Compact-Display-Black.otf in Resources */,
+				6E48768D2ACF2523001D5E2C /* SF-Compact-Display-Medium.otf in Resources */,
+				6E48768A2ACF2523001D5E2C /* SF-Compact-Display-Light.otf in Resources */,
+				6E4876892ACF2523001D5E2C /* SF-Compact-Display-Thin.otf in Resources */,
+				6E4876882ACF2523001D5E2C /* SF-Compact-Display-Ultralight.otf in Resources */,
+				6E4876872ACF2523001D5E2C /* SF-Compact-Display-Regular.otf in Resources */,
+				6E48768C2ACF2523001D5E2C /* SF-Compact-Display-Semibold.otf in Resources */,
 				6EBCB6CC2ABB30F700C72BB5 /* Preview Assets.xcassets in Resources */,
+				6E48768B2ACF2523001D5E2C /* SF-Compact-Display-Heavy.otf in Resources */,
+				6E4876862ACF2523001D5E2C /* SF-Compact-Display-Bold.otf in Resources */,
 				6EBCB6C92ABB30F700C72BB5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +417,7 @@
 				DEVELOPMENT_TEAM = SZ4N2ENSVJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwiftUI-Weather/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -400,6 +447,7 @@
 				DEVELOPMENT_TEAM = SZ4N2ENSVJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwiftUI-Weather/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
