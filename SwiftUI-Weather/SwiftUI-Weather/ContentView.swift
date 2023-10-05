@@ -41,7 +41,86 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("Paris")
-                    .font(Font.custom("SF-Compact-Display-Bold", size: 26))
+                    .font(.sfCompactFont(.bold, size: 26))
+                    .padding(.top, 20)
+                Text("Friday, January 20")
+                    .font(.sfCompactFont(.light, size: 16))
+                    .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
+                    .background(.black)
+                    .clipShape(Capsule())
+                    .foregroundColor(.sunnyYellow)
+                Text("Sunny")
+                    .padding()
+                    .font(.sfCompactFont(.medium, size: 20))
+                Text("31°")
+                    .padding()
+                    .font(.sfCompactFont(.regular, size: 250))
+                    .minimumScaleFactor(0.01)
+                VStack(alignment: .leading) {
+                    Text("Daily Summary")
+                        .font(.sfCompactFont(.bold, size: 20))
+                    Text("""
+    Today's weather is partly cloudy with a temperature of 75°. The wind is coming from the northeast at 10mph, and the visbility is 10 miles. Humidity is 40%.
+    """)
+                    .font(.sfCompactFont(.medium, size: 15))
+                    HStack(spacing: 40) {
+                        VStack {
+                            Image(systemName: "wind")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.sunnyYellow)
+                                .padding(.top, 8)
+                            Text("4 mph")
+                                .font(.sfCompactFont(.bold, size: 20))
+                                .foregroundColor(.sunnyYellow)
+                                .padding(EdgeInsets(top: 6, leading: 0, bottom: 1, trailing: 0))
+                            Text("Wind")
+                                .font(.sfCompactFont(.light, size: 16))
+                                .foregroundColor(.sunnyYellow)
+                        }
+                        .padding(.vertical, 20)
+                        VStack {
+                            Image(systemName: "drop")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.sunnyYellow)
+                                .padding(.top, 8)
+                            Text("48%")
+                                .font(.sfCompactFont(.bold, size: 20))
+                                .foregroundColor(.sunnyYellow)
+                                .padding(EdgeInsets(top: 6, leading: 0, bottom: 1, trailing: 0))
+                            Text("Humidity")
+                                .font(.sfCompactFont(.light, size: 16))
+                                .foregroundColor(.sunnyYellow)
+                        }
+                        .padding(.vertical, 20)
+                        VStack {
+                            Image(systemName: "eye")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.sunnyYellow)
+                                .padding(.top, 8)
+                            Text("10.1 mi")
+                                .font(.sfCompactFont(.bold, size: 20))
+                                .foregroundColor(.sunnyYellow)
+                                .padding(EdgeInsets(top: 6, leading: 0, bottom: 1, trailing: 0))
+                            Text("Visbility")
+                                .font(.sfCompactFont(.light, size: 16))
+                                .foregroundColor(.sunnyYellow)
+                        }
+                        .padding(.vertical, 20)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(RoundedRectangle(cornerRadius: 20))
+                }
+                .padding(30)
+                VStack(alignment: .leading) {
+                    Text("Daily Summary")
+                        .font(.sfCompactFont(.bold, size: 20))
+                }
                 Spacer()
             }
         }
@@ -111,19 +190,18 @@ struct ContentView: View {
 extension Font {
     
     enum SFCompactDisplayFont: String {
-        case black = "SF-Compact-Display-Black"
-        case bold = "SF-Compact-Display-Bold"
-        case heavy = "SF-Compact-Display-Heavy"
-        case light = "SF-Compact-Display-Light"
-        case medium = "SF-Compact-Display-Medium"
-        case regular = "SF-Compact-Display-Regular"
-        case semibold = "SF-Compact-Display-Semibold"
-        case thin = "SF-Compact-Display-Thin"
-        case ultralight = "SF-Compact-Display-Ultralight"
-        
+        case black = "SFCompactDisplay-Black"
+        case bold = "SFCompactDisplay-Bold"
+        case heavy = "SFCompactDisplay-Heavy"
+        case light = "SFCompactDisplay-Light"
+        case medium = "SFCompactDisplay-Medium"
+        case regular = "SFCompactDisplay-Regular"
+        case semibold = "SFCompactDisplay-Semibold"
+        case thin = "SFCompactDisplay-Thin"
+        case ultralight = "SFCompactDisplay-Ultralight"
     }
     
-    static func sfCompactFont(_ type: SFCompactDisplayFont, size: CGFloat = 20) -> Font {
+    static func sfCompactFont(_ type: SFCompactDisplayFont = .regular, size: CGFloat = 20) -> Font {
         return .custom(type.rawValue, size: size)
     }
     
