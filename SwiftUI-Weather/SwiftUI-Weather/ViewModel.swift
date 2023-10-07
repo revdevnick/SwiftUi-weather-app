@@ -7,70 +7,100 @@
 
 import Foundation
 
+private let BASE_URL = "https://weatherapi-com.p.rapidapi.com"
+
 @Observable final class ViewModel {
     
-    var isNight: Bool = false
-    var animate: Bool = false
-    var forecast: Forecast?
-    var isUpdating: Bool = false
-    var useMetricSystem: Bool {
-        return Locale.current.measurementSystem == .metric
-    }
+    private let client = Client()
     
-    func getForecast(for city: String) async throws -> Forecast {
-        let endpoint = "https://weatherapi-com.p.rapidapi.com/forecast.json?q=\(city)&days=3"
-        guard let url = URL(string: endpoint) else { throw WeatherAPIError.invalidUrl }
-        
-        guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist"), let keys = NSDictionary(contentsOfFile: path), let apiKey = keys["WeatherAPIKey"] as? String else {
-            throw WeatherAPIError.forbidden("Key not found")
-        }
+    var request: URLRequest = {
+        let url = URL(string: "\(BASE_URL)/forecast.json")
+        let path = Bundle.main.path(forResource: "Keys", ofType: "plist")
+        let keys = NSDictionary(contentsOfFile: path!)
+        let apiKey: String = keys?["WeatherAPIKey"] as! String
         let headers = [
             "X-RapidAPI-Key": apiKey,
             "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
         ]
         
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: url!)
         request.cachePolicy = .useProtocolCachePolicy
         request.timeoutInterval = 10.0
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
-        
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard let response = response as? HTTPURLResponse else {
-            throw  WeatherAPIError.invalidResponse
-        }
-        
-        switch response.statusCode {
-        case 200:
-            do {
-                let decoder = JSONDecoder()
-                do {
-                    return try decoder.decode(Forecast.self, from: data)
-                } catch let DecodingError.dataCorrupted(context) {
-                    print(context)
-                    
-                } catch let DecodingError.keyNotFound(key, context) {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                    throw WeatherAPIError.forbidden("Test")
-                } catch let DecodingError.valueNotFound(value, context) {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                    throw WeatherAPIError.forbidden("Test")
-                } catch let DecodingError.typeMismatch(type, context)  {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                    throw WeatherAPIError.forbidden("Test")
-                } catch {
-                    print("error: ", error)
-                    throw WeatherAPIError.forbidden("Test")
-                }
-            }
-        default:
-            throw WeatherAPIError.invalidResponse
-        }
-        throw WeatherAPIError.invalidResponse
+        return request
+    }()
+    
+    private(set) var errorMessage: String = ""
+    var animate: Bool = false
+    var forecast: Forecast?
+    var isUpdating: Bool = false
+    
+    var cityName: String {
+        return forecast?.location.cityName ?? "TEST"
     }
     
+    var todayDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM d"
+        dateFormatter.locale = Locale.autoupdatingCurrent
+        let date = dateFormatter.date(from: forecast?.current?.lastUpdatedString ?? "") ?? Date()
+        return dateFormatter.string(from: date)
+    }
+    
+    var currentCondition: String {
+        return forecast?.current?.condition.text.capitalized ?? ""
+    }
+    
+    var currentTemp: String {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .short
+        formatter.locale = Locale.current
+        formatter.numberFormatter.maximumFractionDigits = 0
+        formatter.unitOptions = .temperatureWithoutUnit
+        let temperature = Measurement(value: Double(forecast?.current?.tempC ?? 0), unit: UnitTemperature.celsius)
+        return formatter.string(from: temperature)
+    }
+    
+    var currentWind: String {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .medium
+        formatter.locale = Locale.current
+        formatter.numberFormatter.maximumFractionDigits = 0
+        formatter.unitOptions = .providedUnit
+        let wind = Measurement(value: Double(forecast?.current?.windKph ?? 0), unit: UnitSpeed.kilometersPerHour)
+        return formatter.string(from: wind)
+    }
+    
+    var currentVisbility: String {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .medium
+        formatter.locale = Locale.current
+        formatter.numberFormatter.maximumFractionDigits = 0
+        formatter.unitOptions = .providedUnit
+        let visbility = Measurement(value: Double(forecast?.current?.visibilityKm ?? 0), unit: UnitLength.kilometers)
+        return formatter.string(from: visbility)
+    }
+    
+    var currentHumidity: String {
+        return (forecast?.current?.humidity.description ?? "") + "%"
+    }
+    
+    var summary: String {
+        return """
+        Today's weather is \(currentCondition.lowercased()) with a temperature of \(currentTemp). The wind is coming from the \(forecast?.current?.windDirection ?? "") at \(currentWind), and the visbility is \(currentVisbility). Humidity is \(currentHumidity).
+        """
+    }
+    
+    func fetchWeather(for city: String) async {
+        let city = URLQueryItem(name: "q", value: "\(city)")
+        let days = URLQueryItem(name: "days", value: "3")
+        self.request.url = self.request.url?.appending(queryItems: [city, days])
+        
+        do {
+            self.forecast = try await client.fetch(type: Forecast.self, with: self.request)
+        } catch {
+            errorMessage = "\((error as! ApiError).customDescription)"
+        }
+    }
 }

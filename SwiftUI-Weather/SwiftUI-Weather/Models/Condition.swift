@@ -12,6 +12,7 @@ struct Condition: Codable, Equatable, Hashable {
     var icon: String
     var code: Int
     
+    /// Codes for WeatherAPI found here https://www.weatherapi.com/docs/weather_conditions.json
     var sfSymbol: String {
         switch self.code {
         case 1195, 1192, 1243, 1246: //heavy rain

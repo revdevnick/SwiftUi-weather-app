@@ -10,6 +10,7 @@ import Foundation
 struct ForecastDay: Codable, Hashable {
     var date: String
     var dayOfWeekFormatted: String
+    var monthDay: String
     var dateEpoch: Int
     var day: Day
     var astro: Astro
@@ -31,7 +32,11 @@ struct ForecastDay: Codable, Hashable {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dayFromString = dateFormatter.date(from: self.date)
         self.dayOfWeekFormatted = dayFromString?.formatted(Date.FormatStyle().weekday(.abbreviated)) ?? "UNK"
-        
+        self.monthDay = dayFromString?.formatted(
+            Date.FormatStyle()
+                .month(.abbreviated)
+                .day(.defaultDigits)
+        ) ?? "UNK"
         self.dateEpoch = try container.decode(Int.self, forKey: .dateEpoch)
         self.day = try container.decode(Day.self, forKey: .day)
         self.astro = try container.decode(Astro.self, forKey: .astro)
