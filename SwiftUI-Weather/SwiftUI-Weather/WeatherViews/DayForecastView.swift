@@ -29,15 +29,18 @@ struct DayForecastView: View {
         VStack(spacing: 8) {
             Text(temperature)
                 .font(.sfCompactFont(.medium, size: 20))
+                .foregroundColor(Color.sunnyText)
             Image(systemName: day.day.condition.sfSymbol)
                 .resizable()
                 .frame(width: 20, height: 20)
+                .foregroundColor(Color.sunnyText)
             Text(day.monthDay)
                 .font(.sfCompactFont(.medium, size: 15))
+                .foregroundColor(Color.sunnyText)
         }
         .padding(.vertical, 10)
         .frame(width: 70)
         .cornerRadius(10)
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 2))
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.sunnyText, lineWidth: 2))
     }
 }

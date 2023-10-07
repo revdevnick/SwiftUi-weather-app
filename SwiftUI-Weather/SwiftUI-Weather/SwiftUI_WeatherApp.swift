@@ -12,6 +12,7 @@ struct SwiftUI_WeatherApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .toolbarBackground(Color.sunnyText, for: .navigationBar)
         }
     }
 }

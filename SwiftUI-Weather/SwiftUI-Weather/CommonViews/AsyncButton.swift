@@ -46,7 +46,7 @@ struct AsyncButton<Label: View>: View {
         print("button works")
     } label: {
         Image(systemName: "arrow.clockwise")
-            .tint(.lightBlue)
+            .tint(.blue)
     }
 
 }

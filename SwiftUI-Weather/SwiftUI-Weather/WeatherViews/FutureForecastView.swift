@@ -16,6 +16,7 @@ struct FutureForecastView: View {
             Text("3-Day Forecast")
                 .font(.sfCompactFont(.bold, size: 20))
                 .padding(.bottom, 5)
+                .foregroundColor(Color.sunnyText)
             HStack(spacing: 20) {
                 ForEach(days, id: \.self) { day in
                     DayForecastView(for: day)
@@ -27,12 +28,12 @@ struct FutureForecastView: View {
                         Image(systemName: "plus.circle")
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.sunnyText)
                     }
                     .padding(.vertical, 10)
                     .frame(maxWidth: 70, maxHeight: .infinity)
                     .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 2))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.sunnyText, lineWidth: 2))
                 })
             }
             Spacer()

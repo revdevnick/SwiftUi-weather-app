@@ -24,28 +24,33 @@ struct CurrentCityForecastView: View {
                 Text(name)
                     .font(.sfCompactFont(.bold, size: 26))
                     .padding(.top, 50)
+                    .foregroundColor(Color.sunnyText)
                 Text(date)
                     .font(.sfCompactFont(.light, size: 16))
                     .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
-                    .background(.black)
+                    .background(Color.sunnyText)
                     .clipShape(Capsule())
                     .foregroundColor(.sunnyYellow)
                     .padding(.top, 8)
                 Text(current)
                     .padding(.top, 10)
                     .font(.sfCompactFont(.medium, size: 20))
+                    .foregroundColor(Color.sunnyText)
                 Text(temp)
                     .font(.sfCompactFont(.regular, size: 200))
                     .padding(.top, -35)
+                    .foregroundColor(Color.sunnyText)
             }
             .frame(maxWidth: .infinity)
             .padding(.bottom, -30)
             VStack(alignment: .leading, spacing: 10) {
                 Text("Daily Summary")
                     .font(.sfCompactFont(.bold, size: 20))
+                    .foregroundColor(Color.sunnyText)
                 Text(summary)
                     .font(.sfCompactFont(.medium, size: 15))
                     .frame(height: 84)
+                    .foregroundColor(Color.sunnyText)
                 HStack(spacing: 40) {
                     VStack {
                         Image(systemName: "wind")
@@ -97,7 +102,8 @@ struct CurrentCityForecastView: View {
                     .padding(.vertical, 20)
                 }
                 .frame(maxWidth: .infinity)
-                .background(RoundedRectangle(cornerRadius: 10))
+                .background(Color.sunnyText)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .padding(.horizontal, 30)
         }

@@ -19,7 +19,7 @@ final class LocationManager {
     
     func startCurrentLocationUpdates() async throws {
         for try await locationUpdate in CLLocationUpdate.liveUpdates() {
-            guard let location = locationUpdate.location else { return }
+            guard let location = locationUpdate.location, location != self.location else { return }
             self.location = location
         }
     }
