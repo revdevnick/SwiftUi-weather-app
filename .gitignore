@@ -92,3 +92,4 @@ iOSInjectionProject/
 
 #Custom ignores from Nick
 Keys.plist
+*.DS_Store
