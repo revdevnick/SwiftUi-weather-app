@@ -11,13 +11,23 @@ struct DayForecastView: View {
     
     private var day: ForecastDay
     
+    private var temperature: String {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .short
+        formatter.locale = Locale.current
+        formatter.numberFormatter.maximumFractionDigits = 0
+        formatter.unitOptions = .temperatureWithoutUnit
+        let temperature = Measurement(value: Double(day.day.maxTempC), unit: UnitTemperature.celsius)
+        return formatter.string(from: temperature)
+    }
+    
     init(for day: ForecastDay) {
         self.day = day
     }
     
     var body: some View {
         VStack(spacing: 8) {
-            Text("\(day.day.maxTempF)°")
+            Text(temperature)
                 .font(.sfCompactFont(.medium, size: 20))
             Image(systemName: day.day.condition.sfSymbol)
                 .resizable()

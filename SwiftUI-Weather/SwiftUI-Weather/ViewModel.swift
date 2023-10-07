@@ -49,7 +49,7 @@ private let BASE_URL = "https://weatherapi-com.p.rapidapi.com"
     }
     
     var currentCondition: String {
-        return forecast?.current?.condition.text.capitalized ?? ""
+        return forecast?.current?.condition.text.localizedCapitalized ?? ""
     }
     
     var currentTemp: String {
@@ -88,7 +88,7 @@ private let BASE_URL = "https://weatherapi-com.p.rapidapi.com"
     
     var summary: String {
         return """
-        Today's weather is \(currentCondition.lowercased()) with a temperature of \(currentTemp). The wind is coming from the \(forecast?.current?.windDirection ?? "") at \(currentWind), and the visbility is \(currentVisbility). Humidity is \(currentHumidity).
+        Today's weather is \(currentCondition.lowercased()) with a temperature of \(currentTemp). The wind is coming from the \(forecast?.current?.windDirection ?? "") at \(currentWind), and the visibility is \(currentVisbility). Humidity is \(currentHumidity).
         """
     }
     

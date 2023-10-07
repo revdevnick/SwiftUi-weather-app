@@ -45,8 +45,7 @@ struct CurrentCityForecastView: View {
                     .font(.sfCompactFont(.bold, size: 20))
                 Text(summary)
                     .font(.sfCompactFont(.medium, size: 15))
-                    .padding(.bottom, 12)
-                    .frame(width: .infinity, height: 84)
+                    .frame(height: 84)
                 HStack(spacing: 40) {
                     VStack {
                         Image(systemName: "wind")

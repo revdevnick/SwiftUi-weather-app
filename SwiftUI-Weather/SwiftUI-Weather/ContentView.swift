@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @Bindable var model = ViewModel()
+    @State var locationManager = LocationManager()
     
     var body: some View {
         NavigationStack {
@@ -32,7 +33,10 @@ struct ContentView: View {
             }
         }
         .task {
-            await model.fetchWeather(for: "27527")
+            try? await locationManager.requestUserAuthorization()
+            try? await locationManager.startCurrentLocationUpdates()
+            let location = "\(locationManager.location?.coordinate.latitude.formatted() ?? "35.650823098002476"),\(locationManager.location?.coordinate.longitude.formatted() ?? "-78.4571531147212")"
+            await model.fetchWeather(for: location)
         }
         .onAppear {
             model.animate.toggle()
