@@ -33,7 +33,9 @@ struct FutureForecastView: View {
                     .padding(.vertical, 10)
                     .frame(maxWidth: 70, maxHeight: .infinity)
                     .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.sunnyText, lineWidth: 2))
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.sunnyText, lineWidth: 2)
+                    )
                 })
             }
             Spacer()

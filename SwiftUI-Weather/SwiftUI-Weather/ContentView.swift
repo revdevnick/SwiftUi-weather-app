@@ -27,7 +27,6 @@ struct ContentView: View {
                         humidity: model.currentHumidity,
                         visbility: model.currentVisbility)
                     FutureForecastView(days: model.forecast?.forecast.forecastDay ?? [])
-                    
                     Spacer()
                 }
             }

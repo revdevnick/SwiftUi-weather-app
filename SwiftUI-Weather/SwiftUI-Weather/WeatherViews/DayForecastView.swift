@@ -41,6 +41,8 @@ struct DayForecastView: View {
         .padding(.vertical, 10)
         .frame(width: 70)
         .cornerRadius(10)
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.sunnyText, lineWidth: 2))
+        .overlay(RoundedRectangle(cornerRadius: 10)
+            .stroke(Color.sunnyText, lineWidth: 2)
+        )
     }
 }

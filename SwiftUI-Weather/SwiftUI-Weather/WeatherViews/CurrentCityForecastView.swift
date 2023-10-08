@@ -103,7 +103,7 @@ struct CurrentCityForecastView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .background(Color.sunnyText)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .clipShape(.rect(cornerRadius: 10))
             }
             .padding(.horizontal, 30)
         }
